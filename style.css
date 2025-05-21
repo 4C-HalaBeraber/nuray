@@ -1,25 +1,41 @@
+/* Doğum günü temalı animasyonlu arka plan */
 body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+  background: url('https://images.unsplash.com/photo-1607083207303-1be682b6333d?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   text-align: center;
+  overflow: hidden;
 }
 
 .container {
   background: rgba(255, 255, 255, 0.85);
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   max-width: 600px;
+  animation: popIn 1s ease-out;
 }
 
-video {
+video, iframe {
   width: 100%;
   border-radius: 10px;
   margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
