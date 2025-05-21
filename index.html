@@ -9,8 +9,15 @@
 <body>
   <div class="container">
     <h1>🎂 İyi ki Doğdun, [İsim]! 🎉</h1>
-    <video src="video.mp4" autoplay loop muted controls></video>
+
+    <!-- Yerel video (alternatif olarak iframe kullanılabilir) -->
+    <video id="birthdayVideo" src="video.mp4" autoplay loop muted controls></video>
+
     <p>Nice mutlu yaşlara! 💖</p>
   </div>
+
+  <!-- Konfeti kütüphanesi -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
