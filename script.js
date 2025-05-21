@@ -1,7 +1,7 @@
 // Konfeti animasyonu
-function startConfetti(duration = 5000) {
+function startConfetti(duration = 5000, callback) {
   const end = Date.now() + duration;
-  (function frame() {
+  const interval = setInterval(() => {
     confetti({
       particleCount: 7,
       angle: 60,
@@ -14,27 +14,21 @@ function startConfetti(duration = 5000) {
       spread: 55,
       origin: { x: 1 }
     });
-
-    if (Date.now() < end) {
-      requestAnimationFrame(frame);
+    if (Date.now() > end) {
+      clearInterval(interval);
+      if (typeof callback === "function") callback();
     }
-  })();
+  }, 200);
 }
 
-// Doğum günü müziği çal (isteğe bağlı)
-const birthdayAudio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-birthdayAudio.loop = true;
-
 window.addEventListener("load", () => {
-  // Videoyu otomatik başlat
   const video = document.getElementById("birthdayVideo");
-  video.play().catch(() => {
-    console.warn("Tarayıcı otomatik oynatmayı engelledi.");
-  });
 
-  // Konfeti ve müziği başlat
-  setTimeout(() => {
-    startConfetti(6000);
-    birthdayAudio.play().catch(() => console.warn("Ses otomatik başlamadı."));
-  }, 500);
+  // Konfeti başlat, bitince video oynat
+  startConfetti(5000, () => {
+    video.style.display = "block";
+    video.play().catch(() => {
+      alert("Tarayıcı video oynatmayı engelledi.");
+    });
+  });
 });
